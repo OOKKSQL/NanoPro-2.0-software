@@ -1,0 +1,11 @@
+{
+  "simpull": {
+    "uv_laser_power": "0",
+    "blue_laser_power": "100",
+    "green_laser_power": "100",
+    "red_laser_power": "50",
+    "exposure_time": "100",
+    "number_of_frames": "4000",
+    "number_of_acquisitions": "1"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "master_level": "pro",
+  "instrument": {
+    "interval_focus": "0.25",
+    "interval_display": "0.1",
+    "focus_set_point": "0",
+    "focus_current": "[]",
+    "focus_positive_fine_tolerance": "1",
+    "focus_negative_fine_tolerance": "-1",
+    "focus_positive_coarse_tolerance": "5",
+    "focus_negative_coarse_tolerance": "-5",
+    "focus_scan_center": "40",
+    "focus_scan_max": "80",
+    "focus_scan_min": "0",
+    "focus_offset": "-1",
+    "stage_x_com_port": "COM4",
+    "stage_y_com_port": "COM6",
+    "stage_z_com_port": "COM7",
+    "stage_x_jog_mode": "2",
+    "stage_y_jog_mode": "2",
+    "stage_z_jog_mode": "1",
+    "stage_speed_current": "2",
+    "stage_speed_min": "1",
+    "stage_speed_max": "2",
+    "stage_step_size": "100",
+    "laser_com_port": "COM3"
+  }
+}

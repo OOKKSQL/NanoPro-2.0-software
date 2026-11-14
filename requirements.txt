@@ -1,0 +1,10 @@
+# Acquire desktop application dependencies
+setuptools>=45.0.0
+wheel>=0.37.0
+PyQt5>=5.15.0
+numpy<2.0  # PySpin requires NumPy 1.x
+opencv-python>=4.5.0
+pyserial>=3.4
+pco>=0.1.0
+
+# setup_environment.py also installs pycobolt and the local PySpin wheel.
