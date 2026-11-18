@@ -39,7 +39,7 @@ echo.
 pause
 
 echo Running Python setup script with Python 3.10...
-py -3.10 setup_environment.py
+py -3.10 "%~dp0setup_environment.py"
 
 if %errorlevel% neq 0 (
     echo.
@@ -49,11 +49,9 @@ if %errorlevel% neq 0 (
     echo.
     echo Setup completed successfully!
     echo.
-    echo To start developing:
-    echo 1. Activate environment: venv\Scripts\activate
-    echo 2. Run application: python UI\main.py
+    echo To start the application, double-click Launch_Application.bat.
     echo.
 )
 
 echo.
-pause 
+pause

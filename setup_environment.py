@@ -50,15 +50,15 @@ def print_header(message):
 
 def print_success(message):
     """Print a success message"""
-    print_colored(f"✓ {message}", Colors.OKGREEN)
+    print_colored(f"SUCCESS: {message}", Colors.OKGREEN)
 
 def print_warning(message):
     """Print a warning message"""
-    print_colored(f"⚠ {message}", Colors.WARNING)
+    print_colored(f"WARNING: {message}", Colors.WARNING)
 
 def print_error(message):
     """Print an error message"""
-    print_colored(f"✗ {message}", Colors.FAIL)
+    print_colored(f"ERROR: {message}", Colors.FAIL)
 
 def check_windows_version():
     """Check if running on Windows"""
@@ -176,9 +176,9 @@ def install_dependencies(venv_path, requirements_file):
                 print("Installing pycobolt from GitHub...")
                 subprocess.run([python_exe, "-m", "pip", "install", "git+https://github.com/cobolt-lasers/pycobolt.git", "--no-warn-script-location"], 
                               check=True, capture_output=True, text=True, timeout=120)
-                print_success("✓ pycobolt (Cobolt laser control)")
+                print_success("pycobolt (Cobolt laser control)")
             except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as e:
-                print_warning("⚠ Failed to install pycobolt from GitHub")
+                print_warning("Failed to install pycobolt from GitHub")
                 print_warning("  pycobolt is required for the Acquire laser")
             
             # Try to install PySpin from local wheel file in Acquire/Req/
@@ -192,10 +192,10 @@ def install_dependencies(venv_path, requirements_file):
                     print("Installing PySpin from local wheel...")
                     subprocess.run([python_exe, "-m", "pip", "install", str(pyspin_wheel), "--no-warn-script-location"], 
                                   check=True, capture_output=True, text=True, timeout=120)
-                    print_success("✓ PySpin (FLIR camera control)")
+                    print_success("PySpin (FLIR camera control)")
                     pyspin_installed = True
                 except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as e:
-                    print_warning("⚠ Failed to install PySpin from local wheel")
+                    print_warning("Failed to install PySpin from local wheel")
                     print_warning(f"  Error: {e}")
             else:
                 # Fallback: try to find any spinnaker wheel in project root
@@ -206,15 +206,15 @@ def install_dependencies(venv_path, requirements_file):
                         print("Installing PySpin from local wheel...")
                         subprocess.run([python_exe, "-m", "pip", "install", str(pyspin_wheels[0]), "--no-warn-script-location"], 
                                       check=True, capture_output=True, text=True, timeout=120)
-                        print_success("✓ PySpin (FLIR camera control)")
+                        print_success("PySpin (FLIR camera control)")
                         pyspin_installed = True
                     except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as e:
-                        print_warning("⚠ Failed to install PySpin from local wheel")
+                        print_warning("Failed to install PySpin from local wheel")
                         print_warning(f"  Error: {e}")
             
             if not pyspin_installed:
                 print("")
-                print_warning("📋 PySpin (FLIR camera SDK) not found or failed to install:")
+                print_warning("PySpin (FLIR camera SDK) not found or failed to install:")
                 print_warning(f"  Expected location: {pyspin_wheel}")
                 print_warning("  Option 1: Place spinnaker_python-*.whl file in Acquire/Req/ folder")
                 print_warning("  Option 2: Manual installation:")
@@ -262,9 +262,9 @@ def install_packages_individually(python_exe, requirements_file):
             print(f"Installing {package}...")
             subprocess.run([python_exe, "-m", "pip", "install", package, "--no-warn-script-location"], 
                           check=True, capture_output=True, text=True, timeout=120)
-            print_success(f"✓ {package.split('>=')[0]}")
+            print_success(f"{package.split('>=')[0]}")
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as e:
-            print_warning(f"⚠ Failed to install {package}")
+            print_warning(f"Failed to install {package}")
             failed_packages.append(package)
     
     # Install pycobolt from GitHub
@@ -272,9 +272,9 @@ def install_packages_individually(python_exe, requirements_file):
         print("Installing pycobolt from GitHub...")
         subprocess.run([python_exe, "-m", "pip", "install", "git+https://github.com/cobolt-lasers/pycobolt.git", "--no-warn-script-location"], 
                       check=True, capture_output=True, text=True, timeout=120)
-        print_success("✓ pycobolt (Cobolt laser control)")
+        print_success("pycobolt (Cobolt laser control)")
     except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as e:
-        print_warning("⚠ Failed to install pycobolt from GitHub")
+        print_warning("Failed to install pycobolt from GitHub")
         print_warning("  pycobolt is required for the Acquire laser")
         failed_packages.append("pycobolt")
 
@@ -309,9 +309,9 @@ def test_installation(venv_path):
         try:
             subprocess.run([python_exe, "-c", f"import {module}"], 
                           check=True, capture_output=True, text=True, timeout=30)
-            print_success(f"✓ {module}")
+            print_success(f"{module}")
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
-            print_error(f"✗ {module}")
+            print_error(f"{module}")
             failed_imports.append(module)
     
     if failed_imports:
@@ -326,27 +326,21 @@ def print_final_instructions(venv_path, project_root):
     """Print final setup instructions"""
     print_header("Setup Complete!")
     
-    print_colored("🎉 Windows development environment setup completed!", Colors.OKGREEN)
+    print_colored("Windows development environment setup completed!", Colors.OKGREEN)
     print()
-    print_colored("📁 Virtual environment created at:", Colors.OKBLUE)
+    print_colored("Virtual environment created at:", Colors.OKBLUE)
     print_colored(f"  {venv_path}", Colors.OKCYAN)
     print()
-    print_colored("🚀 To start developing:", Colors.OKBLUE)
+    print_colored("To start the application:", Colors.OKBLUE)
     print()
-    print_colored("1. Activate the virtual environment:", Colors.OKCYAN)
-    print_colored(f"   {venv_path}\\Scripts\\activate", Colors.OKBLUE)
+    print_colored("   Double-click Launch_Application.bat", Colors.OKCYAN)
     print()
-    print_colored("2. Run the application:", Colors.OKCYAN)
-    print_colored("   python UI\\main.py", Colors.OKBLUE)
-    print()
-    print_colored("💡 Tips:", Colors.OKCYAN)
-    print_colored("  • Always activate the environment before working", Colors.OKBLUE)
-    print_colored("  • The environment contains all required dependencies", Colors.OKBLUE)
-    print_colored("  • To deactivate: type 'deactivate' in the terminal", Colors.OKBLUE)
+    print_colored("Tips:", Colors.OKCYAN)
+    print_colored("  - The launcher uses the virtual environment automatically", Colors.OKBLUE)
 
 def main():
     """Main setup function"""
-    print_colored("🔬 Super-Resolution Microscopy Application Setup", Colors.HEADER)
+    print_colored("Super-Resolution Microscopy Application Setup", Colors.HEADER)
     print_colored("Windows Development Environment Setup", Colors.OKBLUE)
     print()
     
@@ -389,20 +383,20 @@ if __name__ == "__main__":
     try:
         success = main()
         if success:
-            print_colored("\n🎉 Setup completed successfully!", Colors.OKGREEN)
-            print_colored("You can now start developing! 🚀", Colors.OKGREEN)
+            print_colored("\nSetup completed successfully!", Colors.OKGREEN)
+            print_colored("You can now start developing!", Colors.OKGREEN)
             input("\nPress Enter to exit...")
             sys.exit(0)
         else:
-            print_colored("\n⚠ Setup completed with warnings.", Colors.WARNING)
+            print_colored("\nSetup completed with warnings.", Colors.WARNING)
             print_colored("Check the output above for any issues.", Colors.WARNING)
             input("\nPress Enter to exit...")
             sys.exit(1)
     except KeyboardInterrupt:
-        print_colored("\n\n❌ Setup interrupted by user.", Colors.FAIL)
+        print_colored("\n\nSetup interrupted by user.", Colors.FAIL)
         input("\nPress Enter to exit...")
         sys.exit(1)
     except Exception as e:
-        print_colored(f"\n❌ Setup failed with error: {e}", Colors.FAIL)
+        print_colored(f"\nSetup failed with error: {e}", Colors.FAIL)
         input("\nPress Enter to exit...")
         sys.exit(1)
