@@ -1,16 +1,16 @@
 # NanoPro 2.0: using the ALBA microscope app
 
-This app lets you view the microscope image, move the sample stage, keep the image in focus, and save recordings. It is intended for people who have been trained to use the connected microscope. Use the laser settings approved for your experiment.
+INTRO
 
 ## Before you begin
 
 You need:
 
-- A Windows 10 or 11 computer (64-bit) connected to the microscope, cameras, stage, and laser. This app is set up for the original lab's device connections. A different computer or microscope may need help from your lab's technical staff.
+- A Windows 10 or 11 computer (64-bit) connected to the microscope, cameras, stage, and laser.
 - An internet connection for the first setup.
 - [Python 3.10.11 for Windows, 64-bit](https://www.python.org/downloads/release/python-31011/). On that page, choose **Windows installer (64-bit)**. During installation, select **Add Python to PATH** if offered. You do not need to learn Python or install a programming editor.
 - [Git for Windows](https://git-scm.com/install/win). The setup uses this to download one required part; you do not need a Git account or need to use Git yourself.
-- The **FLIR Spinnaker 4.0.0.116** camera software installed on the computer. Ask your lab's technical staff to install the matching 64-bit version from [FLIR/Teledyne](https://www.teledynevisionsolutions.com/products/spinnaker-sdk?model=Spinnaker+SDK&segment=iis&vertical=machine+vision) if it is not already there. The setup file adds the app's camera connection part, but it does not install the full FLIR camera software or drivers.
+- The **FLIR Spinnaker 4.0.0.116** camera software installed on the computer. Install the matching 64-bit version from [FLIR/Teledyne](https://www.teledynevisionsolutions.com/products/spinnaker-sdk?model=Spinnaker+SDK&segment=iis&vertical=machine+vision) if it is not already there. The setup file adds the app's camera connection part, but it does not install the full FLIR camera software or drivers.
 
 If you use an already prepared microscope computer, some of these items may already be installed.
 
@@ -27,14 +27,6 @@ Keep the extracted folder in the same place after setup. If you move it, run set
 
 Each time you want to use it, double-click **Launch_Application.bat** in the extracted folder. No programming editor or extra commands are needed.
 
-1. **Choose where recordings go.** Click the **Export folder** box on the left and choose an existing folder where you want your images saved. This copy of the app remembers your choice.
-2. **Connect the microscope.** Click the power symbol at the top right. Wait for **Microscope connected** at the bottom of the window. If you see a message saying a device is not connected, see the table below.
-3. **Check your experiment settings.** The boxes on the left show laser power (by color), exposure time (time per image), number of frames (images per recording), and number of acquisitions (how many recordings). Use the values specified by your lab protocol. Enter whole numbers, then click the **save (floppy disk) symbol** beneath the boxes. Your choices will be loaded again next time.
-4. **View the image.** Click the **triangle/play symbol** below the large image to turn the live view on or off.
-5. **Adjust the sample if needed.** The arrow controls move the stage while held. The speed controls change how quickly it moves. Use these only if you have been trained on this microscope.
-6. **Keep focus if needed.** Click the focus symbol below the small image. If the app says **Focus reading is not available**, wait for the small camera image to appear and try again.
-7. **Record.** Click the **video camera symbol** below the large image. Let the planned recording finish. The app saves files named like `Stack_26-11-17_14_30-00.tif` in your chosen Export folder. Each `.tif` file contains a stack of images. If the record button remains highlighted afterward, click it again to turn it off.
-8. When finished, turn off live view and focus if they are on, click the power symbol to disconnect, and close the window.
 
 ## If something goes wrong
 
@@ -51,5 +43,3 @@ Each time you want to use it, double-click **Launch_Application.bat** in the ext
 | The live image stays blank | Make sure the triangle/play symbol is on. Check the sample and illumination using your lab procedure. If the image is still blank, ask technical staff to check the camera. |
 | No recording appears in your folder | Check that the Export folder is correct, let the recording finish, and look for a `Stack_` file with a `.tif` ending. |
 | The app closes or shows an error in the black window | Take a photo of the message and share it with your lab's technical staff. Include what you clicked just before it happened. |
-
-The setup checks that the app's parts can load; it cannot check whether a physical microscope is connected. If this is the first time the computer has been used with this microscope, ask your lab's technical staff to confirm the hardware setup before your experiment.
